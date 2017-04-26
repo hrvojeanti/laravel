@@ -12,5 +12,23 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	   $name = 'Ivo';
+	   $surname = 'Ivic';
+
+	   $items = DB::table('items')->get();
+
+	   return view('welcome', compact('items'));
+   // return view('welcome', ['name'=>'Hrvoje']);
+
 });
+
+
+Route::get('item/{id}', function($id){
+
+	$item = DB::table('items')->find($id);
+
+	return view('items.show', compact('item') );
+
+});
+
+
